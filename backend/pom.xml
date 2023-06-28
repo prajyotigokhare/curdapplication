@@ -10,7 +10,8 @@
     </parent>
     <groupId>com.uruov</groupId>
     <artifactId>fullstack</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>fullstack</name>
     <description>FullStack project for Spring Boot and React</description>
 
@@ -19,6 +20,11 @@
     </properties>
 
     <dependencies>
+    <dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -55,6 +61,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-tomcat</artifactId>
+<scope>provided</scope>
+</dependency>
    </dependencies>
 
     <build>
@@ -63,6 +75,16 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.19.1</version>
+        </plugin>
+              <!-- <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version>
+            </plugin> -->
         </plugins>
     </build>
 
