@@ -49,4 +49,4 @@ stages:
     - script: |
         echo $(Build.ArtifactStagingDirectory)
         echo $(System.ArtifactsDirectory)
-        cp $(Build.ArtifactStagingDirectory)/target/*.war /opt/tomcat/webapps
+        cp $(Build.ArtifactStagingDirectory)/drop/backend/target/*.war /opt/tomcat/webapps
