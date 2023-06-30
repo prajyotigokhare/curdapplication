@@ -46,9 +46,13 @@ stages:
       java
   - job:
     steps:
+    - task: CopyPublishBuildArtifacts@1
+      inputs:
+       CopyRoot: '/opt/tomcat/webapps'
+       Contents: 'target/*.war'
+       ArtifactName: 'drop'
+       ArtifactType: 'Container'
     - script: |
         echo $(Build.ArtifactStagingDirectory)
         echo $(System.ArtifactsDirectory)
-        cd $(Build.ArtifactStagingDirectory)
-        cd ..
-        cp drop/backend/target/*.war /opt/tomcat/webapps
+
