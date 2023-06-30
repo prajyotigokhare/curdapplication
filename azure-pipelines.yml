@@ -47,12 +47,12 @@ stages:
       java_aws
   - job:
     steps:
-    - task: CopyPublishBuildArtifacts@1
+    - task: CopyFiles@2
+      displayName: 'Copy Files to artifact staging directory'
       inputs:
-       CopyRoot: '/opt/tomcat/webapps'
-       Contents: 'target/*.war'
-       ArtifactName: 'drop'
-       ArtifactType: 'Container'
+        SourceFolder: '$(Build.ArtifactStagingDirectory)'
+        Contents: '**/target/*.war'
+        TargetFolder: /opt/tomcat/webapps
     - script: |
         echo $(Build.ArtifactStagingDirectory)
         echo $(System.ArtifactsDirectory)
