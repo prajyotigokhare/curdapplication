@@ -58,5 +58,5 @@ stages:
     - script: |
         echo $(Build.ArtifactStagingDirectory)
         echo $(System.ArtifactsDirectory)
-        cp /home/fs-lp-28/Desktop/azure-agent/myagent/_work/1/s/drop/backend/target/*.war /opt/tomcat/webapps
+        cp /home/fs-lp-28/Desktop/azure-agent/myagent/_work/1/drop/backend/target/*.war /opt/tomcat/webapps
 
