@@ -15,25 +15,27 @@ stages:
   - job: MavenPackageAndPublishArtifacts
     steps:
     - script: |
-    - task: Maven@3
-      inputs:
-        mavenPomFile: 'backend/pom.xml'
-        mavenOptions: '-Xmx3072m'
-        javaHomeOption: 'JDKVersion'
-        # jdkVersionOption: '1.8'
-        jdkArchitectureOption: 'x64'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        goals: 'package'              
-    - task: CopyFiles@2
-      displayName: 'Copy Files to artifact staging directory'
-      inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/target/*.war'
-        TargetFolder: $(Build.ArtifactStagingDirectory)
+        echo "Maven Build"
+    # - script: |
+    # - task: Maven@3
+    #   inputs:
+    #     mavenPomFile: 'backend/pom.xml'
+    #     mavenOptions: '-Xmx3072m'
+    #     javaHomeOption: 'JDKVersion'
+    #     # jdkVersionOption: '1.8'
+    #     jdkArchitectureOption: 'x64'
+    #     publishJUnitResults: true
+    #     testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    #     goals: 'package'              
+    # - task: CopyFiles@2
+    #   displayName: 'Copy Files to artifact staging directory'
+    #   inputs:
+    #     SourceFolder: '$(System.DefaultWorkingDirectory)'
+    #     Contents: '**/target/*.war'
+    #     TargetFolder: $(Build.ArtifactStagingDirectory)
     
-    - upload: $(Build.ArtifactStagingDirectory)
-      artifact: drop
+    # - upload: $(Build.ArtifactStagingDirectory)
+    #   artifact: drop
 
 - stage: Deploy
   displayName: Deploy stage
@@ -47,13 +49,14 @@ stages:
       java_aws
   - job:
     steps:
-    - task: CopyFiles@2
-      displayName: 'Copy Files to artifact staging directory'
-      inputs:
-        SourceFolder: '$(Build.ArtifactStagingDirectory)'
-        Contents: '**/target/*.war'
-        TargetFolder: /opt/tomcat/webapps
+    # - task: CopyFiles@2
+    #   displayName: 'Copy Files to artifact staging directory'
+    #   inputs:
+    #     SourceFolder: '$(Build.ArtifactStagingDirectory)'
+    #     Contents: '**/target/*.war'
+    #     TargetFolder: /opt/tomcat/webapps
     - script: |
         echo $(Build.ArtifactStagingDirectory)
         echo $(System.ArtifactsDirectory)
+        cp /home/fs-lp-28/Desktop/azure-agent/myagent/_work/1/s/drop/backend/target/*.war /opt/tomcat/webapps
 
