@@ -46,4 +46,6 @@ stages:
       java
   - job:
     steps:
-    - script: echo $(Build.ArtifactStagingDirectory)
+    - script: |
+      echo $(Build.ArtifactStagingDirectory)
+      echo $(System.ArtifactsDirectory)
