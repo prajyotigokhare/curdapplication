@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  java
+  java_aws
 stages:
 - stage: Build 
   displayName: Build Maven
@@ -45,7 +45,7 @@ stages:
     displayName: Deploy Linux Web App
     environment: $(environmentName)
     pool:
-      java
+      java_aws
   - job:
     steps:
     - task: CopyPublishBuildArtifacts@1
