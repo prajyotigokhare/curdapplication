@@ -47,5 +47,5 @@ stages:
   - job:
     steps:
     - script: |
-      echo $(Build.ArtifactStagingDirectory)
-      echo $(System.ArtifactsDirectory)
+        echo $(Build.ArtifactStagingDirectory)
+        echo $(System.ArtifactsDirectory)
