@@ -10,6 +10,18 @@ trigger:
 pool:
   java_aws
 stages:
+- stage: Test
+  displayName: Snyk Test
+  jobs:
+    - job: Test
+      steps:
+        - task: SnykSecurityScan@1
+          inputs:
+            serviceConnectionEndpoint: 'snyk-test'
+            testType: 'app'
+            monitorWhen: 'always'
+            failOnIssues: false     
+            
 - stage: Build 
   displayName: Build Maven
   jobs:
@@ -38,18 +50,7 @@ stages:
     
     - upload: $(Build.ArtifactStagingDirectory)
       artifact: drop
-      
-- stage: Test
-  displayName: Snyk Test
-  jobs:
-    - job: Test
-      steps:
-        - task: SnykSecurityScan@1
-          inputs:
-            serviceConnectionEndpoint: 'snyk-test'
-            testType: 'app'
-            monitorWhen: 'always'
-            failOnIssues: false      
+       
 
 - stage: Deploy
   displayName: Deploy stage
