@@ -1,4 +1,5 @@
 # Maven
+
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
@@ -26,7 +27,14 @@ stages:
         jdkArchitectureOption: 'x64'
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        goals: 'package'              
+        goals: 'package'         
+
+    - task: SnykSecurityScan@1
+      inputs:
+        serviceConnectionEndpoint: 'snyk-test'
+        testType: 'app'
+        monitorWhen: 'always'
+        failOnIssues: false    
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
