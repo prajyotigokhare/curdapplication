@@ -29,12 +29,6 @@ stages:
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'package'         
 
-    - task: SnykSecurityScan@1
-      inputs:
-        serviceConnectionEndpoint: 'snyk-test'
-        testType: 'app'
-        monitorWhen: 'always'
-        failOnIssues: false    
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
@@ -44,6 +38,18 @@ stages:
     
     - upload: $(Build.ArtifactStagingDirectory)
       artifact: drop
+      
+- stage: Test
+  displayName: Snyk Test
+  jobs:
+    - job: Test
+      steps:
+        - task: SnykSecurityScan@1
+          inputs:
+            serviceConnectionEndpoint: 'snyk-test'
+            testType: 'app'
+            monitorWhen: 'always'
+            failOnIssues: false      
 
 - stage: Deploy
   displayName: Deploy stage
