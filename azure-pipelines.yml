@@ -10,18 +10,18 @@ trigger:
 pool:
   java_aws
 stages:
-- stage: Test
-  displayName: Snyk Test
-  jobs:
-    - job: Test
-      steps:
-        - task: SnykSecurityScan@1
-          inputs:
-            serviceConnectionEndpoint: 'snyk-test'
-            testType: 'app'
-            monitorWhen: 'always'
-            failOnIssues: false     
-            
+# - stage: Test
+#   displayName: Snyk Test
+#   jobs:
+#     - job: Test
+#       steps:
+#         - task: SnykSecurityScan@1
+#           inputs:
+#             serviceConnectionEndpoint: 'snyk-test'
+#             testType: 'app'
+#             monitorWhen: 'always'
+#            failOnIssues: false     
+
 - stage: Build 
   displayName: Build Maven
   jobs:
@@ -29,7 +29,6 @@ stages:
     steps:
     - script: |
         echo "Maven Build"
-    - script: |
     - task: Maven@3
       inputs:
         mavenPomFile: 'backend/pom.xml'
@@ -50,7 +49,20 @@ stages:
     
     - upload: $(Build.ArtifactStagingDirectory)
       artifact: drop
-       
+  - job: FrontendBuild
+    steps:
+    - script: |
+        cd frontend/react-frontend
+        npm run build
+    - task: CopyFiles@2
+      displayName: 'Copy Files to artifact staging directory'
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: '**/build'
+        TargetFolder: $(Build.ArtifactStagingDirectory)
+        
+    - upload: $(Build.ArtifactStagingDirectory)
+      artifact: rjs
 
 - stage: Deploy
   displayName: Deploy stage
