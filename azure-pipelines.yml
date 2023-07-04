@@ -44,6 +44,13 @@ stages:
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'package'         
 
+    - task: SnykSecurityScan@1
+      inputs:
+        serviceConnectionEndpoint: 'snyk-test'
+        testType: 'app'
+        targetFile: '$(System.DefaultWorkingDirectory)'
+        monitorWhen: 'never'
+        failOnIssues: false
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
