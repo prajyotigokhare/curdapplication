@@ -44,13 +44,10 @@ stages:
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'package'         
 
-    - task: SnykSecurityScan@1
+    - task: SonarQubeAnalyze@5
       inputs:
-        serviceConnectionEndpoint: 'snyk-test'
-        testType: 'app'
-        targetFile: '$(System.DefaultWorkingDirectory)'
-        monitorWhen: 'never'
-        failOnIssues: false
+        jdkversion: 'JAVA_HOME_11_X64'
+
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
