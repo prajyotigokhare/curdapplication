@@ -33,6 +33,30 @@ stages:
     steps:
     - script: |
         echo "Maven Build"
+    - task: SonarQubePrepare@5
+      inputs:
+        SonarQube: 'sonarqube'
+        scannerMode: 'Other'
+        extraProperties: |
+          # Additional properties that will be passed to the scanner,
+          # Put one key=value per line, example:
+          # sonar.exclusions=**/*.bin
+          sonar.projectKey=java_aws_java_aws_AYkaBc3iS3N4V5C8wPdD
+          sonar.projectName=java_aws
+    - task: JavaToolInstaller@0
+      inputs:
+        versionSpec: '11'
+        jdkArchitectureOption: 'x64'
+  
+        jdkSourceOption: 'PreInstalled'
+        
+    - task: SonarQubeAnalyze@5
+      inputs:
+        jdkversion: 'JAVA_HOME_11_X64'
+
+    - task: SonarQubePublish@5
+      inputs:
+        pollingTimeoutSec: '300'
     - task: Maven@3
       inputs:
         mavenPomFile: 'backend/pom.xml'
@@ -44,9 +68,7 @@ stages:
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'package'         
 
-    - task: SonarQubeAnalyze@5
-      inputs:
-        jdkversion: 'JAVA_HOME_11_X64'
+    
 
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
