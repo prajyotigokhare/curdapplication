@@ -24,7 +24,11 @@ stages:
 
 - stage: Build 
   displayName: Build Maven
+  variables:
+    rsource: frontend/react-frontend/build
+
   jobs:
+# Maven Build (Backend)
   - job: MavenPackageAndPublishArtifacts
     steps:
     - script: |
@@ -49,20 +53,28 @@ stages:
     
     - upload: $(Build.ArtifactStagingDirectory)
       artifact: drop
+      
+# React Build (Frontend)
   - job: FrontendBuild
     steps:
     - script: |
         cd frontend/react-frontend
+        npm install
         npm run build
-    - task: CopyFiles@2
-      displayName: 'Copy Files to artifact staging directory'
+    
+    - task: ArchiveFiles@2
       inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/build'
-        TargetFolder: $(Build.ArtifactStagingDirectory)
-        
-    - upload: $(Build.ArtifactStagingDirectory)
-      artifact: rjs
+        rootFolderOrFile: '$(rsource)'
+        includeRootFolder: true
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'rdrop'
+        publishLocation: 'Container'
 
 - stage: Deploy
   displayName: Deploy stage
