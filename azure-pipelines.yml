@@ -102,26 +102,26 @@ stages:
         ArtifactName: 'rdrop'
         publishLocation: 'Container'
 
-- stage: Deploy
-  displayName: Deploy stage
-  dependsOn: Build
-  condition: succeeded()
-  jobs:
-  - deployment: DeployLinuxWebApp
-    displayName: Deploy Linux Web App
-    environment: $(environmentName)
-    pool:
-      java_aws
-  - job:
-    steps:
-    # - task: CopyFiles@2
-    #   displayName: 'Copy Files to artifact staging directory'
-    #   inputs:
-    #     SourceFolder: '$(Build.ArtifactStagingDirectory)'
-    #     Contents: '**/target/*.war'
-    #     TargetFolder: /opt/tomcat/webapps
-    - script: |
-        echo $(Build.ArtifactStagingDirectory)
-        echo $(System.ArtifactsDirectory)
-        cp /home/fs-lp-28/Desktop/azure-agent/myagent/_work/1/drop/backend/target/*.war /opt/tomcat/webapps
+# - stage: Deploy
+#   displayName: Deploy stage
+#   dependsOn: Build
+#   condition: succeeded()
+#   jobs:
+#   - deployment: DeployLinuxWebApp
+#     displayName: Deploy Linux Web App
+#     environment: $(environmentName)
+#     pool:
+#       java_aws
+#   - job:
+#     steps:
+#     # - task: CopyFiles@2
+#     #   displayName: 'Copy Files to artifact staging directory'
+#     #   inputs:
+#     #     SourceFolder: '$(Build.ArtifactStagingDirectory)'
+#     #     Contents: '**/target/*.war'
+#     #     TargetFolder: /opt/tomcat/webapps
+#     - script: |
+#         echo $(Build.ArtifactStagingDirectory)
+#         echo $(System.ArtifactsDirectory)
+#         cp /home/fs-lp-28/Desktop/azure-agent/myagent/_work/1/drop/backend/target/*.war /opt/tomcat/webapps
 
