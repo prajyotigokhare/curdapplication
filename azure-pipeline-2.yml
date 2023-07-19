@@ -4,13 +4,7 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
-trigger:
-- main
 
-pool:
-  OP
-
-stages:
 # - stage: Test
 #   displayName: Snyk Test
 #   jobs:
@@ -23,21 +17,10 @@ stages:
 #             monitorWhen: 'always'
 #            failOnIssues: false     
 
-- stage: React
-  displayName: Build React
-  variables:
-    rsource: frontend/react-frontend/build
-
-  jobs:
-# Maven Build (Backend)
-  - job: FrontendBuild
     steps:
     - script: |
         echo "React Build"
       
-- stage:
-  jobs:
-  - job:
     steps:
     - script: |
         cd frontend/react-frontend
