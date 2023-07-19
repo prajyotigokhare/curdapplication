@@ -25,13 +25,13 @@
         npm install
         npm run build
     
-    # - task: ArchiveFiles@2
-    #   inputs:
-    #     rootFolderOrFile: 'frontend/react-frontend/build'
-    #     includeRootFolder: true
-    #     archiveType: 'zip'
-    #     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    #     replaceExistingArchive: true
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: 'frontend/react-frontend/build'
+        includeRootFolder: true
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
 
     - task: PublishBuildArtifacts@1
       inputs:
