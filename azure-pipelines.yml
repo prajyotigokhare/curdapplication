@@ -71,11 +71,11 @@ stages:
     - upload: $(Build.ArtifactStagingDirectory)
       artifact: drop
       
-- stage: ReactBuild
-  jobs:
-  - job: React
-    steps:
-    - template: azure-pipeline-2.yml
+# - stage: ReactBuild
+#   jobs:
+#   - job: React
+#     steps:
+#     - template: azure-pipeline-2.yml
 
 # - stage: Deploy
 #   jobs:
@@ -85,26 +85,28 @@ stages:
 #         cp $(Build.ArtifactStagingDirectory)/rdrop/*.zip /opt/tomcat/webapps
       
 # React Build (Frontend)
-  # - job: FrontendBuild
-  #   steps:
-  #   - script: |
-  #       cd frontend/react-frontend
-  #       npm install
-  #       npm run build
+- stage:
+  jobs:
+  - job: FrontendBuild
+    steps:
+    - script: |
+        cd frontend/react-frontend
+        npm install
+        npm run build
     
-  #   - task: ArchiveFiles@2
-  #     inputs:
-  #       rootFolderOrFile: '$(rsource)'
-  #       includeRootFolder: true
-  #       archiveType: 'zip'
-  #       archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-  #       replaceExistingArchive: true
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: '$(rsource)'
+        includeRootFolder: true
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
 
-  #   - task: PublishBuildArtifacts@1
-  #     inputs:
-  #       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-  #       ArtifactName: 'rdrop'
-  #       publishLocation: 'Container'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'rdrop'
+        publishLocation: 'Container'
 
 # - stage: Deploy
 #   displayName: Deploy stage
