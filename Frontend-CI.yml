@@ -2,13 +2,7 @@
 pool:
   OP
 
-resources:
-  pipelines:
-  - pipeline: azurePipeline  
-    source: azure-pipeline 
-    project: CRUD_Applications # Required only if the source pipeline is in another project
-    trigger: true  # Run app-ci pipeline when any run of security-lib-ci completes
-  
+
     # trigger:    
     #   stages:         # This stage filter is used when evaluating conditions for 
     #   - PreProduction 
