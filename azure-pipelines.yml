@@ -31,19 +31,19 @@ stages:
   jobs:
 # Maven Build (Backend)
   - job: MavenPackageAndPublishArtifacts
-    steps:
-    - script: |
-        echo "Maven Build"
-    - task: SonarQubePrepare@5
-      inputs:
-        SonarQube: 'sonarqube'
-        scannerMode: 'Other'
-        extraProperties: |
-          # Additional properties that will be passed to the scanner,
-          # Put one key=value per line, example:
-          # sonar.exclusions=**/*.bin
-          sonar.projectKey=CRUD_Applications_CRUD_Applications_AYls8Xmuj6a284NO-BJp
-          sonar.projectName=CRUD_Applications
+    # steps:
+    # - script: |
+    #     echo "Maven Build"
+    # - task: SonarQubePrepare@5
+    #   inputs:
+    #     SonarQube: 'sonarqube'
+    #     scannerMode: 'Other'
+    #     extraProperties: |
+    #       # Additional properties that will be passed to the scanner,
+    #       # Put one key=value per line, example:
+    #       # sonar.exclusions=**/*.bin
+    #       sonar.projectKey=CRUD_Applications_CRUD_Applications_AYls8Xmuj6a284NO-BJp
+    #       sonar.projectName=CRUD_Applications
 
     - task: Maven@4
       inputs:
@@ -54,11 +54,11 @@ stages:
         mavenVersionOption: 'Default'
         mavenAuthenticateFeed: false
         effectivePomSkip: false
-        sonarQubeRunAnalysis: true
-        sqMavenPluginVersionChoice: 'latest'
-    - task: SonarQubePublish@5
-      inputs:
-        pollingTimeoutSec: '300'
+        # sonarQubeRunAnalysis: true
+        # sqMavenPluginVersionChoice: 'latest'
+    # - task: SonarQubePublish@5
+    #   inputs:
+    #     pollingTimeoutSec: '300'
     
 
     - task: CopyFiles@2
