@@ -108,6 +108,13 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'rdrop'
         publishLocation: 'Container'
+      
+    - task: ExtractFiles@1
+      inputs:
+        archiveFilePatterns: '**/*.zip'
+        destinationFolder: '/opt/tomcat/webapps'
+        cleanDestinationFolder: false
+        overwriteExistingFiles: true
 
 # - stage: Deploy
 #   displayName: Deploy stage
