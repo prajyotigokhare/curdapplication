@@ -7,9 +7,8 @@ resources:
   - pipeline: azurePipeline  
     source: azure-pipeline 
     project: CRUD_Applications # Required only if the source pipeline is in another project
-    trigger:  # Run app-ci pipeline when any run of security-lib-ci completes
-      stages:
-      - BuildMaven
+    trigger: true  # Run app-ci pipeline when any run of security-lib-ci completes
+  
     # trigger:    
     #   stages:         # This stage filter is used when evaluating conditions for 
     #   - PreProduction 
