@@ -1,17 +1,44 @@
+# Maven
+
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
 - main
 
 pool:
   OP
-    # trigger:    
-    #   stages:         # This stage filter is used when evaluating conditions for 
-    #   - PreProduction 
 
 stages:
-- stage: Frontend-Build
+# - stage: Test
+#   displayName: Snyk Test
+#   jobs:
+#     - job: Test
+#       steps:
+#         - task: SnykSecurityScan@1
+#           inputs:
+#             serviceConnectionEndpoint: 'snyk-test'
+#             testType: 'app'
+#             monitorWhen: 'always'
+#            failOnIssues: false     
+
+- stage: React
+  displayName: Build React
+  variables:
+    rsource: frontend/react-frontend/build
+
+  jobs:
+# Maven Build (Backend)
+  - job: FrontendBuild
+    steps:
+    - script: |
+        echo "React Build"
+      
+- stage:
   jobs:
   - job:
+    steps:
     - script: |
         cd frontend/react-frontend
         npm install
