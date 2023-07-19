@@ -75,7 +75,7 @@ stages:
   jobs:
   - job:
     steps:
-    - template: templates/azure-pipeline-2.yml
+    - template: azure-pipeline-2.yml
       
 # React Build (Frontend)
   # - job: FrontendBuild
