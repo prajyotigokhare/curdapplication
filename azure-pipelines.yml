@@ -77,9 +77,9 @@ stages:
     steps:
     - template: azure-pipeline-2.yml
 
-- stage: ReactBuild
+- stage: Deploy
   jobs:
-  - job: React
+  - job: ReactDeploy
     steps:
     - script: |
         cp $(Build.ArtifactStagingDirectory)/rdrop/*.zip /opt/tomcat/webapps
