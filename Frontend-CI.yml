@@ -1,0 +1,37 @@
+
+pool:
+  OP
+
+resources:
+  pipelines:
+  - pipeline: azurePipeline  
+    source: azure-pipeline 
+    project: FabrikamProject # Required only if the source pipeline is in another project
+    trigger: true # Run app-ci pipeline when any run of security-lib-ci completes
+
+    # trigger:    
+    #   stages:         # This stage filter is used when evaluating conditions for 
+    #   - PreProduction 
+
+stages:
+- stage: Frontend-Build
+  jobs:
+  - job:
+    - script: |
+        cd frontend/react-frontend
+        npm install
+        npm run build
+    
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: '$(rsource)'
+        includeRootFolder: true
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'rdrop'
+        publishLocation: 'Container'
