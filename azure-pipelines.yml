@@ -77,12 +77,12 @@ stages:
     steps:
     - template: azure-pipeline-2.yml
 
-- stage: Deploy
-  jobs:
-  - job: ReactDeploy
-    steps:
-    - script: |
-        cp $(Build.ArtifactStagingDirectory)/rdrop/*.zip /opt/tomcat/webapps
+# - stage: Deploy
+#   jobs:
+#   - job: ReactDeploy
+#     steps:
+#     - script: |
+#         cp $(Build.ArtifactStagingDirectory)/rdrop/*.zip /opt/tomcat/webapps
       
 # React Build (Frontend)
   # - job: FrontendBuild
