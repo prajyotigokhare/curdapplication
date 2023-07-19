@@ -16,7 +16,6 @@
 #             testType: 'app'
 #             monitorWhen: 'always'
 #            failOnIssues: false     
-
     steps:
     - script: |
         echo "React Build"
@@ -28,7 +27,7 @@
     
     - task: ArchiveFiles@2
       inputs:
-        rootFolderOrFile: '$(rsource)'
+        rootFolderOrFile: 'frontend/react-frontend'
         includeRootFolder: true
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
