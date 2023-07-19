@@ -71,6 +71,12 @@ stages:
     - upload: $(Build.ArtifactStagingDirectory)
       artifact: drop
       
+- stage:
+  jobs:
+  - job:
+    steps:
+    - template: templates/azure-pipeline-2.yml
+      
 # React Build (Frontend)
   # - job: FrontendBuild
   #   steps:
