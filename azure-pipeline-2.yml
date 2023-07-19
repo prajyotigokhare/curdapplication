@@ -27,7 +27,7 @@
     
     - task: ArchiveFiles@2
       inputs:
-        rootFolderOrFile: 'frontend/react-frontend'
+        rootFolderOrFile: 'frontend/react-frontend/build'
         includeRootFolder: true
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
