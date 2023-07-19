@@ -10,6 +10,13 @@ trigger:
 pool:
   OP
 
+resources:
+  pipelines:
+  - pipeline: azurePipeline  
+    source: Frontend-CI 
+    project: CRUD_Applications # Required only if the source pipeline is in another project
+    trigger: true  # Run app-ci pipeline when any run of security-lib-ci completes
+  
 
 stages:
 # - stage: Test
