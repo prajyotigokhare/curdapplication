@@ -44,7 +44,7 @@ stages:
     #       # sonar.exclusions=**/*.bin
     #       sonar.projectKey=CRUD_Applications_CRUD_Applications_AYls8Xmuj6a284NO-BJp
     #       sonar.projectName=CRUD_Applications
-
+    steps:
     - task: Maven@4
       inputs:
         mavenPomFile: 'backend/pom.xml'
