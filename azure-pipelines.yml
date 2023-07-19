@@ -24,7 +24,7 @@ stages:
 #             monitorWhen: 'always'
 #            failOnIssues: false     
 
-- stage: Build 
+- stage: BuildMaven
   displayName: Build Maven
   variables:
     rsource: frontend/react-frontend/build
