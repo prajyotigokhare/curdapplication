@@ -81,8 +81,8 @@ stages:
   jobs:
   - job: React
     steps:
-    script: |
-      cp $(Build.ArtifactStagingDirectory)/rdrop/*.zip /opt/tomcat/webapps
+    - script: |
+        cp $(Build.ArtifactStagingDirectory)/rdrop/*.zip /opt/tomcat/webapps
       
 # React Build (Frontend)
   # - job: FrontendBuild
