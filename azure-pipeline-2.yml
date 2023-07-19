@@ -40,4 +40,4 @@
         publishLocation: 'Container'
 
     - script: |
-        cp $(Build.ArtifactStagingDirectory)/rdrop/*.zip /opt/tomcat/webapps
+        cp $(System.DefaultWorkingDirectory)/_CRUD_Applications/rdrop/*.zip /opt/tomcat/webapps
