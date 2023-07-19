@@ -25,8 +25,7 @@ stages:
 
 - stage: BuildMaven
   displayName: Build Maven
-  variables:
-    rsource: frontend/react-frontend/build
+
 
   jobs:
 # Maven Build (Backend)
@@ -86,6 +85,8 @@ stages:
       
 # React Build (Frontend)
 - stage:
+  variables:
+    rsource: frontend/react-frontend/build
   jobs:
   - job: FrontendBuild
     steps:
