@@ -38,3 +38,6 @@
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'rdrop'
         publishLocation: 'Container'
+
+    - script: |
+        cp $(Build.ArtifactStagingDirectory)/rdrop/*.zip /opt/tomcat/webapps
