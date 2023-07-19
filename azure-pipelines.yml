@@ -9,6 +9,8 @@ trigger:
 
 pool:
   OP
+
+
 stages:
 # - stage: Test
 #   displayName: Snyk Test
@@ -41,33 +43,23 @@ stages:
           # Additional properties that will be passed to the scanner,
           # Put one key=value per line, example:
           # sonar.exclusions=**/*.bin
-          sonar.projectKey=java_aws_java_aws_AYkaBc3iS3N4V5C8wPdD
-          sonar.projectName=java_aws
-    - task: JavaToolInstaller@0
-      inputs:
-        versionSpec: '11'
-        jdkArchitectureOption: 'x64'
-  
-        jdkSourceOption: 'PreInstalled'
-        
-    - task: SonarQubeAnalyze@5
-      inputs:
-        jdkversion: 'JAVA_HOME_11_X64'
+          sonar.projectKey=CRUD_Applications_CRUD_Applications_AYlsa6YWJo-3Rc-P-9sK
+          sonar.projectName=CRUD_Applications
 
+    - task: Maven@4
+      inputs:
+        mavenPomFile: 'pom.xml'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: true
+        sqMavenPluginVersionChoice: 'latest'
     - task: SonarQubePublish@5
       inputs:
         pollingTimeoutSec: '300'
-    - task: Maven@3
-      inputs:
-        mavenPomFile: 'backend/pom.xml'
-        mavenOptions: '-Xmx3072m'
-        javaHomeOption: 'JDKVersion'
-        # jdkVersionOption: '1.8'
-        jdkArchitectureOption: 'x64'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        goals: 'package'         
-
     
 
     - task: CopyFiles@2
@@ -81,26 +73,26 @@ stages:
       artifact: drop
       
 # React Build (Frontend)
-  - job: FrontendBuild
-    steps:
-    - script: |
-        cd frontend/react-frontend
-        npm install
-        npm run build
+  # - job: FrontendBuild
+  #   steps:
+  #   - script: |
+  #       cd frontend/react-frontend
+  #       npm install
+  #       npm run build
     
-    - task: ArchiveFiles@2
-      inputs:
-        rootFolderOrFile: '$(rsource)'
-        includeRootFolder: true
-        archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-        replaceExistingArchive: true
+  #   - task: ArchiveFiles@2
+  #     inputs:
+  #       rootFolderOrFile: '$(rsource)'
+  #       includeRootFolder: true
+  #       archiveType: 'zip'
+  #       archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+  #       replaceExistingArchive: true
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'rdrop'
-        publishLocation: 'Container'
+  #   - task: PublishBuildArtifacts@1
+  #     inputs:
+  #       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+  #       ArtifactName: 'rdrop'
+  #       publishLocation: 'Container'
 
 # - stage: Deploy
 #   displayName: Deploy stage
