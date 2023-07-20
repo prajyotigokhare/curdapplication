@@ -122,6 +122,10 @@ stages:
         destinationFolder: '/opt/tomcat/webapps/front'
         cleanDestinationFolder: true
         overwriteExistingFiles: true'
+      
+    - script: |
+        cd /opt/tomcat/webapps/front
+        serve -s build -l 3000 &
 
 # - stage: Deploy
 #   displayName: Deploy stage
