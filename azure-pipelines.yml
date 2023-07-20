@@ -117,7 +117,7 @@ stages:
     - task: ExtractFiles@1
       inputs:
         archiveFilePatterns: '$(Build.ArtifactStagingDirectory)/*.zip'
-        destinationFolder: '/opt/tomcat/webapps'
+        destinationFolder: '/opt/tomcat/webapps/front'
         cleanDestinationFolder: true
         overwriteExistingFiles: true'
 
