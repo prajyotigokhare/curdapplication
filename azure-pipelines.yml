@@ -112,7 +112,7 @@ stages:
       inputs:
         SourceFolder: '$(Build.ArtifactStagingDirectory)'
         Contents: '**/*.zip'
-        TargetFolder: ''
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
       
     - task: ExtractFiles@1
       inputs:
