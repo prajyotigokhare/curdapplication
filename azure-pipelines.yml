@@ -95,24 +95,24 @@ stages:
         npm install
         npm run build
     
-    # - task: ArchiveFiles@2
-    #   inputs:
-    #     rootFolderOrFile: '$(rsource)'
-    #     includeRootFolder: true
-    #     archiveType: 'zip'
-    #     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    #     replaceExistingArchive: true
-    - task: CopyFiles@2
+    - task: ArchiveFiles@2
       inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/'
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
+        rootFolderOrFile: '$(rsource)'
+        includeRootFolder: true
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
     - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'rdrop'
         publishLocation: 'Container'
+        
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(Build.ArtifactStagingDirectory)'
+        Contents: '**/*.zip'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
       
     - task: ExtractFiles@1
       inputs:
