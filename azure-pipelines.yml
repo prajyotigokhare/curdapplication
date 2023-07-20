@@ -113,13 +113,15 @@ stages:
         SourceFolder: '$(Build.ArtifactStagingDirectory)'
         Contents: '**/*.zip'
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
+        CleanTargetFolder: true
+        OverWrite: true
       
     - task: ExtractFiles@1
       inputs:
-        archiveFilePatterns: '**/*.zip'
+        archiveFilePatterns: '$(Build.ArtifactStagingDirectory)/*.zip'
         destinationFolder: '/opt/tomcat/webapps'
         cleanDestinationFolder: false
-        overwriteExistingFiles: true
+        overwriteExistingFiles: true'
 
 # - stage: Deploy
 #   displayName: Deploy stage
