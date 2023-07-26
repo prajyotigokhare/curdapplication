@@ -89,7 +89,7 @@ stages:
   pool:
     AWS_OP
   variables:
-    rsource: frontend/react-frontend/build
+    rsource: /home/ubuntu/azure_agent/myagent/_work/1/s/frontend/react-frontend/build
   jobs:
   - job: FrontendBuild
     steps:
