@@ -108,9 +108,16 @@ stages:
         npm install
         npm run build
     
+    # - task: ArchiveFiles@2
+    #   inputs:
+    #     rootFolderOrFile: '$(rsource)'
+    #     includeRootFolder: true
+    #     archiveType: 'zip'
+    #     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    #     replaceExistingArchive: true
     - task: ArchiveFiles@2
       inputs:
-        rootFolderOrFile: '$(rsource)'
+        rootFolderOrFile: '$(Build.BinariesDirectory)'
         includeRootFolder: true
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
