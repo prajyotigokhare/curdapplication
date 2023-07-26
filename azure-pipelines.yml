@@ -142,7 +142,7 @@ stages:
     #     overwriteExistingFiles: true'
       
     - script: |
-        serve -s build -l 3000
+        echo "Working"
 
 # - stage: Deploy
 #   displayName: Deploy stage
