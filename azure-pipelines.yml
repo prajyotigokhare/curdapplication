@@ -115,35 +115,36 @@ stages:
     #     archiveType: 'zip'
     #     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     #     replaceExistingArchive: true
-    - task: ArchiveFiles@2
-      inputs:
-        rootFolderOrFile: '$(Build.BinariesDirectory)'
-        includeRootFolder: true
-        archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-        replaceExistingArchive: true
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'rdrop'
-        publishLocation: 'Container'
+    # - task: ArchiveFiles@2
+    #   inputs:
+    #     rootFolderOrFile: '$(Build.BinariesDirectory)'
+    #     includeRootFolder: true
+    #     archiveType: 'zip'
+    #     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    #     replaceExistingArchive: true
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    #     ArtifactName: 'rdrop'
+    #     publishLocation: 'Container'
         
-    - task: CopyFiles@2
-      inputs:
-        SourceFolder: '$(Build.ArtifactStagingDirectory)'
-        Contents: '**/*.zip'
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    # - task: CopyFiles@2
+    #   inputs:
+    #     SourceFolder: '$(Build.ArtifactStagingDirectory)'
+    #     Contents: '**/*.zip'
+    #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
       
-    - task: ExtractFiles@1
-      inputs:
-        archiveFilePatterns: '$(Build.ArtifactStagingDirectory)/*.zip'
-        destinationFolder: '/home/ubuntu/Frontend'
-        cleanDestinationFolder: true
-        overwriteExistingFiles: true'
+    # - task: ExtractFiles@1
+    #   inputs:
+    #     archiveFilePatterns: '$(Build.ArtifactStagingDirectory)/*.zip'
+    #     destinationFolder: '/home/ubuntu/Frontend'
+    #     cleanDestinationFolder: true
+    #     overwriteExistingFiles: true'
       
     - script: |
-        cd /home/ubuntu/Frontend
-        serve -s build -l 3000
+        echo "Testing"
+        # cd /home/ubuntu/Frontend
+        # serve -s build -l 3000
 
 # - stage: Deploy
 #   displayName: Deploy stage
