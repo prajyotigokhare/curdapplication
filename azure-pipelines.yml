@@ -7,9 +7,6 @@
 trigger:
 - main
 
-pool:
-  OP
-
 stages:
 # - stage: Test
 #   displayName: Snyk Test
@@ -26,7 +23,9 @@ stages:
 - stage: BuildMaven
   displayName: Build Maven
 
-
+  
+  pool:
+    OP
   jobs:
 # Maven Build (Backend)
   - job: MavenPackageAndPublishArtifacts
@@ -87,6 +86,8 @@ stages:
       
 # React Build (Frontend)
 - stage:
+  pool:
+    AWS_OP
   variables:
     rsource: frontend/react-frontend/build
   jobs:
@@ -119,12 +120,12 @@ stages:
     - task: ExtractFiles@1
       inputs:
         archiveFilePatterns: '$(Build.ArtifactStagingDirectory)/*.zip'
-        destinationFolder: '/opt/tomcat/webapps/front'
+        destinationFolder: '/home/ubuntu/Frontend'
         cleanDestinationFolder: true
         overwriteExistingFiles: true'
       
     - script: |
-        cd /opt/tomcat/webapps/front
+        cd /home/ubuntu/Frontend
         serve -s build -l 3000
 
 # - stage: Deploy
