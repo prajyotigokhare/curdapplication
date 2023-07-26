@@ -42,7 +42,7 @@ stages:
           # Additional properties that will be passed to the scanner,
           # Put one key=value per line, example:
           # sonar.exclusions=**/*.bin
-          sonar.projectKey=CRUD_Applications_CRUD_Applications_AYlx7PZPP1h9GOYp62Zb
+          sonar.projectKey=CRUD_Applications_CRUD_Applications_AYmQjJDrLklWApFcBwWO
           sonar.projectName=CRUD_Applications
 
     - task: Maven@4
