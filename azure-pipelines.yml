@@ -34,32 +34,42 @@ stages:
     #     echo "Maven Build"
 
     steps:
-    - task: SonarQubePrepare@5
-      inputs:
-        SonarQube: 'sonarqube'
-        scannerMode: 'Other'
-        extraProperties: |
-          # Additional properties that will be passed to the scanner,
-          # Put one key=value per line, example:
-          # sonar.exclusions=**/*.bin
-          sonar.projectKey=CRUD_Applications_CRUD_Applications_AYmQjJDrLklWApFcBwWO
-          sonar.projectName=CRUD_Applications
+    # - task: SonarQubePrepare@5
+    #   inputs:
+    #     SonarQube: 'sonarqube'
+    #     scannerMode: 'Other'
+    #     extraProperties: |
+    #       # Additional properties that will be passed to the scanner,
+    #       # Put one key=value per line, example:
+    #       # sonar.exclusions=**/*.bin
+    #       sonar.projectKey=CRUD_Applications_CRUD_Applications_AYmQjJDrLklWApFcBwWO
+    #       sonar.projectName=CRUD_Applications
 
+    # - task: Maven@4
+    #   inputs:
+    #     mavenPomFile: 'backend/pom.xml'
+    #     publishJUnitResults: true
+    #     testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    #     javaHomeOption: 'JDKVersion'
+    #     mavenVersionOption: 'Default'
+    #     mavenAuthenticateFeed: false
+    #     effectivePomSkip: false
+    #     sonarQubeRunAnalysis: true
+    #     sqMavenPluginVersionChoice: 'latest'
+    # - task: SonarQubePublish@5
+    #   inputs:
+    #     pollingTimeoutSec: '300'
+    
     - task: Maven@4
       inputs:
-        mavenPomFile: 'backend/pom.xml'
+        mavenPomFile: 'pom.xml'
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         javaHomeOption: 'JDKVersion'
         mavenVersionOption: 'Default'
         mavenAuthenticateFeed: false
         effectivePomSkip: false
-        sonarQubeRunAnalysis: true
-        sqMavenPluginVersionChoice: 'latest'
-    - task: SonarQubePublish@5
-      inputs:
-        pollingTimeoutSec: '300'
-    
+        sonarQubeRunAnalysis: false
 
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
