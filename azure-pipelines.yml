@@ -142,9 +142,7 @@ stages:
     #     overwriteExistingFiles: true'
       
     - script: |
-        echo "Testing"
-        # cd /home/ubuntu/Frontend
-        # serve -s build -l 3000
+        serve -s build -l 3000
 
 # - stage: Deploy
 #   displayName: Deploy stage
