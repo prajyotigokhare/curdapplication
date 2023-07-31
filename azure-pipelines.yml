@@ -59,7 +59,10 @@ stages:
     # - task: SonarQubePublish@5
     #   inputs:
     #     pollingTimeoutSec: '300'
-    
+    - task: WhiteSource@21
+      inputs:
+        cwd: '$(System.DefaultWorkingDirectory)'
+        projectName: 'test'
     - task: Maven@4
       inputs:
         mavenPomFile: 'backend/pom.xml'
