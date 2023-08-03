@@ -118,7 +118,12 @@ stages:
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
         replaceExistingArchive: false
-
+    - task: ExtractFiles@1
+      inputs:
+        archiveFilePatterns: '**/*.zip'
+        destinationFolder: '/var/www/html'
+        cleanDestinationFolder: true
+        overwriteExistingFiles: true
     # - task: CopyFiles@2
     #   displayName: 'Copy Files to artifact staging directory'
     #   inputs:
