@@ -124,6 +124,19 @@ stages:
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
         replaceExistingArchive: true
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'rdrop'
+        publishLocation: 'Container'
+        
+    # - task: CopyFiles@2
+    #   inputs:
+    #     SourceFolder: '$(Build.ArtifactStagingDirectory)'
+    #     Contents: '**/*.zip'
+    #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      
     
       
     - script: |
