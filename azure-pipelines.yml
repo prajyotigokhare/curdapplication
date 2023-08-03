@@ -106,43 +106,25 @@ stages:
   jobs:
   - job: FrontendBuild
     steps:
+    - task: Cache@2
+      inputs:
+        key: 'npm | "$(Agent.OS)" | package-lock.json'
+        restoreKeys: |
+          npm | "$(Agent.OS)"
+        path: $(npm_config_cache)
+      displayName: Cache npm
     - script: |
         cd frontend/react-frontend
         npm install
         npm run build
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: '$(rsource)'
+        includeRootFolder: true
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
     
-    # - task: ArchiveFiles@2
-    #   inputs:
-    #     rootFolderOrFile: '$(rsource)'
-    #     includeRootFolder: true
-    #     archiveType: 'zip'
-    #     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    #     replaceExistingArchive: true
-    # - task: ArchiveFiles@2
-    #   inputs:
-    #     rootFolderOrFile: '$(Build.BinariesDirectory)'
-    #     includeRootFolder: true
-    #     archiveType: 'zip'
-    #     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    #     replaceExistingArchive: true
-    # - task: PublishBuildArtifacts@1
-    #   inputs:
-    #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    #     ArtifactName: 'rdrop'
-    #     publishLocation: 'Container'
-        
-    # - task: CopyFiles@2
-    #   inputs:
-    #     SourceFolder: '$(Build.ArtifactStagingDirectory)'
-    #     Contents: '**/*.zip'
-    #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-      
-    # - task: ExtractFiles@1
-    #   inputs:
-    #     archiveFilePatterns: '$(Build.ArtifactStagingDirectory)/*.zip'
-    #     destinationFolder: '/home/ubuntu/Frontend'
-    #     cleanDestinationFolder: true
-    #     overwriteExistingFiles: true'
       
     - script: |
         echo "Working"
