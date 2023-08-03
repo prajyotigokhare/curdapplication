@@ -117,18 +117,29 @@ stages:
         cd frontend/react-frontend
         npm install
         npm run build
+      
     - task: ArchiveFiles@2
       inputs:
-        rootFolderOrFile: '$(rsource)'
+        rootFolderOrFile: '$(Build.BinariesDirectory)'
         includeRootFolder: true
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: false
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'rdrop'
-        publishLocation: 'Container'
+    # - task: CopyFiles@2
+    #   displayName: 'Copy Files to artifact staging directory'
+    #   inputs:
+    #     SourceFolder: '$(System.DefaultWorkingDirectory)'
+    #     Contents: '**/target/*.war'
+    #     TargetFolder: $(Build.ArtifactStagingDirectory)
+    
+    # - upload: $(Build.ArtifactStagingDirectory)
+    #   artifact: rdrop
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    #     ArtifactName: 'rdrop'
+    #     publishLocation: 'Container'
         
     # - task: CopyFiles@2
     #   inputs:
