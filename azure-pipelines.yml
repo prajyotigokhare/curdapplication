@@ -118,7 +118,15 @@ stages:
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
         replaceExistingArchive: false
-
+    - task: CopyFiles@2
+      displayName: 'Copy Files to artifact staging directory'
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: '**/target/*.war'
+        TargetFolder: $(Build.ArtifactStagingDirectory)
+    
+    - upload: $(Build.ArtifactStagingDirectory)
+      artifact: rdrop
     - task: ExtractFiles@1
       inputs:
          archiveFilePatterns: '**/*.zip'
