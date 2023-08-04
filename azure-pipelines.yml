@@ -123,16 +123,10 @@ stages:
       inputs:
         SourceFolder: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
         Contents: '**/*.zip'
-        TargetFolder: '/var/www/html'
+        TargetFolder: $(Build.ArtifactStagingDirectory)
     
-    # - upload: $(Build.ArtifactStagingDirectory)
-    #   artifact: rdrop
-    # - task: ExtractFiles@1
-    #   inputs:
-    #      archiveFilePatterns: '**/*.zip'
-    #      destinationFolder: '/var/www/html'
-    #      cleanDestinationFolder: false
-    #      overwriteExistingFiles: false
+    - upload: $(Build.ArtifactStagingDirectory)
+      artifact: rdrop
 
 
     # - task: CopyFiles@2
