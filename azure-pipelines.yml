@@ -102,7 +102,7 @@ stages:
   pool:
     OP
   variables:
-    rsource: /Omkar/CURD/myagent/_work/1/s/frontend/react-frontend/build/*
+    rsource: /Omkar/CURD/myagent/_work/1/a*
   jobs:
   - job: FrontendBuild
     steps:
