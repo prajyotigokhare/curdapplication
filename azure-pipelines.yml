@@ -33,6 +33,7 @@ stages:
     #     echo "Maven Build"
 
     steps:
+    - script: echo"Working"
     # - task: SonarQubePrepare@5
     #   inputs:
     #     SonarQube: 'sonarqube'
