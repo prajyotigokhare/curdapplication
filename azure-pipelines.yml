@@ -121,7 +121,7 @@ stages:
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
-        SourceFolder: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
+        SourceFolder: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
         Contents: '**/*.zip'
         TargetFolder: $(Build.ArtifactStagingDirectory)
     
