@@ -62,27 +62,28 @@ stages:
     #   inputs:
     #     cwd: '$(System.DefaultWorkingDirectory)'
     #     projectName: 'test'
-    - task: Maven@4
-      inputs:
-        mavenPomFile: 'backend/pom.xml'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        javaHomeOption: 'JDKVersion'
-        mavenVersionOption: 'Default'
-        mavenAuthenticateFeed: false
-        effectivePomSkip: false
-        sonarQubeRunAnalysis: false
+    ##################################################################3
+    # - task: Maven@4
+    #   inputs:
+    #     mavenPomFile: 'backend/pom.xml'
+    #     publishJUnitResults: true
+    #     testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    #     javaHomeOption: 'JDKVersion'
+    #     mavenVersionOption: 'Default'
+    #     mavenAuthenticateFeed: false
+    #     effectivePomSkip: false
+    #     sonarQubeRunAnalysis: false
 
-    - task: CopyFiles@2
-      displayName: 'Copy Files to artifact staging directory'
-      inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/target/*.war'
-        TargetFolder: $(Build.ArtifactStagingDirectory)
+    # - task: CopyFiles@2
+    #   displayName: 'Copy Files to artifact staging directory'
+    #   inputs:
+    #     SourceFolder: '$(System.DefaultWorkingDirectory)'
+    #     Contents: '**/target/*.war'
+    #     TargetFolder: $(Build.ArtifactStagingDirectory)
     
-    - upload: $(Build.ArtifactStagingDirectory)
-      artifact: drop
-      
+    # - upload: $(Build.ArtifactStagingDirectory)
+    #   artifact: drop
+    #########################################################################  
 # - stage: ReactBuild
 #   jobs:
 #   - job: React
@@ -112,17 +113,17 @@ stages:
       
     - task: ArchiveFiles@2
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        rootFolderOrFile: '$(Build.BinariesDirectory)'
         includeRootFolder: true
         archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
         replaceExistingArchive: false
-    # - task: CopyFiles@2
-    #   displayName: 'Copy Files to artifact staging directory'
-    #   inputs:
-    #     SourceFolder: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    #     Contents: '**/*.zip'
-    #     TargetFolder: $(Build.ArtifactStagingDirectory)
+    - task: CopyFiles@2
+      displayName: 'Copy Files to artifact staging directory'
+      inputs:
+        SourceFolder: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
+        Contents: '**/*.zip'
+        TargetFolder: $(Build.ArtifactStagingDirectory)
     
     - upload: $(Build.ArtifactStagingDirectory)
       artifact: rdrop
