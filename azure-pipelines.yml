@@ -23,7 +23,6 @@ stages:
 - stage: BuildMaven
   displayName: Build Maven
 
-  
   pool:
     OP
   jobs:
