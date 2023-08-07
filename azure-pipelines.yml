@@ -33,7 +33,6 @@ stages:
     #     echo "Maven Build"
 
     steps:
-    - script: echo"Working"
     # - task: SonarQubePrepare@5
     #   inputs:
     #     SonarQube: 'sonarqube'
@@ -64,26 +63,26 @@ stages:
     #     cwd: '$(System.DefaultWorkingDirectory)'
     #     projectName: 'test'
     ##################################################################3
-    # - task: Maven@4
-    #   inputs:
-    #     mavenPomFile: 'backend/pom.xml'
-    #     publishJUnitResults: true
-    #     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    #     javaHomeOption: 'JDKVersion'
-    #     mavenVersionOption: 'Default'
-    #     mavenAuthenticateFeed: false
-    #     effectivePomSkip: false
-    #     sonarQubeRunAnalysis: false
+    - task: Maven@4
+      inputs:
+        mavenPomFile: 'backend/pom.xml'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
 
-    # - task: CopyFiles@2
-    #   displayName: 'Copy Files to artifact staging directory'
-    #   inputs:
-    #     SourceFolder: '$(System.DefaultWorkingDirectory)'
-    #     Contents: '**/target/*.war'
-    #     TargetFolder: $(Build.ArtifactStagingDirectory)
+    - task: CopyFiles@2
+      displayName: 'Copy Files to artifact staging directory'
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: '**/target/*.war'
+        TargetFolder: $(Build.ArtifactStagingDirectory)
     
-    # - upload: $(Build.ArtifactStagingDirectory)
-    #   artifact: drop
+    - upload: $(Build.ArtifactStagingDirectory)
+      artifact: drop
     #########################################################################  
 # - stage: ReactBuild
 #   jobs:
