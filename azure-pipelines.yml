@@ -72,6 +72,16 @@ stages:
           # Put one key=value per line, example:
           # sonar.exclusions=**/*.bin
           sonar.projectKey=CRUD_Applications_CRUD_Applications_AYnQI1EqMCnHR3pWDXtc
+    # - task: Maven@4
+    #   inputs:
+    #     mavenPomFile: 'backend/pom.xml'
+    #     publishJUnitResults: true
+    #     testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    #     javaHomeOption: 'JDKVersion'
+    #     mavenVersionOption: 'Default'
+    #     mavenAuthenticateFeed: false
+    #     effectivePomSkip: false
+    #     sonarQubeRunAnalysis: true
     - task: Maven@4
       inputs:
         mavenPomFile: 'backend/pom.xml'
@@ -82,7 +92,7 @@ stages:
         mavenAuthenticateFeed: false
         effectivePomSkip: false
         sonarQubeRunAnalysis: true
-
+        sqMavenPluginVersionChoice: 'latest'
     - task: SonarQubePublish@5
       inputs:
         pollingTimeoutSec: '300'
