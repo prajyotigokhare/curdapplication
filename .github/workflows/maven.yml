@@ -19,3 +19,15 @@ jobs:
         cd backend
         mvn -B package --file pom.xml
         
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+          node-version: '18.x'
+
+    - name: npm install, build, and test
+      run: |
+        cd frontend/react-frontend
+        npm install
+        npm run
+        npm build
+        
