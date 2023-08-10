@@ -28,7 +28,7 @@ jobs:
       run: |
         cd frontend/react-frontend
         npm install
-        npm run start
+        npm run build
         
         
         
