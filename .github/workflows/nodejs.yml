@@ -23,6 +23,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-depedancy-path: frontend/react-frontend/package.json
     - run: |
         cd frontend/react-frontend
         npm ci
