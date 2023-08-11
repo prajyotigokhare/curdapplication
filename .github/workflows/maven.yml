@@ -32,10 +32,7 @@ jobs:
           run: |
             cd frontend/react-frontend
             npm install
-            npm fund
-            npm audit fix --force
-            npm run build # --if present
-        
+            
         
         
         
