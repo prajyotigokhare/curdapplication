@@ -19,6 +19,7 @@ jobs:
         cd backend
         mvn -B package --file pom.xml
 
+
   reactBuild:
       runs-on: self-hosted
       steps:
