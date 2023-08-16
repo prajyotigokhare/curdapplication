@@ -30,10 +30,9 @@ jobs:
           run: |
             cd frontend/react-frontend
             - name: Install frontend modules
-               run: npm run install:frontend
+               run: npm run install
             - name: Run frontend unit tests 🧪
-               run: npm run test:frontend
-
+               run: npm run test
            # npm install
             # npm run build
             
