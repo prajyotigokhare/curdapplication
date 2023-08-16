@@ -31,8 +31,7 @@ jobs:
             cd frontend/react-frontend
             npm install
             CI='' npm run build
-            npm install -g serve
-            serve -s build
+           
 
             
         
