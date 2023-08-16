@@ -29,12 +29,8 @@ jobs:
         - name: npm install, build, and test
           run: |
             cd frontend/react-frontend
-            - name: Install frontend modules
-               run: npm run install
-            - name: Run frontend unit tests 🧪
-               run: npm run test
-           # npm install
-            # npm run build
+            npm install
+           # npm run build
             
         
         
