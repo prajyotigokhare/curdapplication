@@ -24,29 +24,15 @@ jobs:
       runs-on: self-hosted
       
       steps:
-      strategy:
-      matrix:
-        node-version: 14
-
-        steps:
+      
         - uses: actions/checkout@v3
-        - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-                 - run: |
-            cd frontend/react-frontend
-            npm ci
-            npm run build --if-present
+        - name: Use Node.js
+          uses: actions/setup-node@v3
+          with:
+            node-version: 14
       
-      #  - uses: actions/checkout@v3
-      #  - name: Use Node.js
-       #   uses: actions/setup-node@v3
-        #  with:
-         #   node-version: 14
-      
-       # - name: npm install, build, and test
-        #  run: |
+        - name: npm install, build, and test
+          run: |
             cd frontend/react-frontend
             npm install
             npm run build
