@@ -31,7 +31,6 @@ jobs:
             cd frontend/react-frontend
             npm install
             CI='' npm run build
-            npm run deploy
            
   #deploy:
    #   needs: build
