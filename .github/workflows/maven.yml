@@ -1,0 +1,46 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build with Maven
+      run: |
+        cd backend
+        mvn -B package --file pom.xml
+
+
+  reactBuild:
+      runs-on: self-hosted
+      steps:
+        - uses: actions/checkout@v3
+        - name: Use Node.js
+          uses: actions/setup-node@v3
+          with:
+            node-version: 18
+      
+        - name: npm install, build, and test
+          run: |
+            cd frontend/react-frontend
+            npm install
+            CI='' npm run build
+           
+  deploy:
+      needs: build
+      runs-on: self-hosted
+
+      steps:
+      #- name: war file
+      #  run: sudo cp /home/aishwarya/actions-runner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
+            
+      - name: deploying build folder
+        run: sudo cp -r build /var/www/html
+        
+        
