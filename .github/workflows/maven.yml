@@ -38,8 +38,9 @@ jobs:
 
       steps:
       - name: war file
-        run: sudo cp /home/fs-swapnil/actions-runner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
+        run: sudo cp /home/aishwarya/actions-runner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
             
-        
+      - name: deploying build folder
+        run: sudo cp -r build /var/www/html
         
         
