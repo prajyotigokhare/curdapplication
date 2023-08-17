@@ -1,5 +1,5 @@
-/home/fs-lp-28/Desktop/fullstack/backend/src/main/java/com/urunov/FullstackApplication.java
-/home/fs-lp-28/Desktop/fullstack/backend/src/main/java/com/urunov/repository/EmployeeRepository.java
-/home/fs-lp-28/Desktop/fullstack/backend/src/main/java/com/urunov/exception/ResourceNotFoundException.java
-/home/fs-lp-28/Desktop/fullstack/backend/src/main/java/com/urunov/controller/EmployeeController.java
-/home/fs-lp-28/Desktop/fullstack/backend/src/main/java/com/urunov/model/Employee.java
+/home/aishwarya/Desktop/proj/CRUD_Applications/backend/src/main/java/com/urunov/controller/EmployeeController.java
+/home/aishwarya/Desktop/proj/CRUD_Applications/backend/src/main/java/com/urunov/repository/EmployeeRepository.java
+/home/aishwarya/Desktop/proj/CRUD_Applications/backend/src/main/java/com/urunov/FullstackApplication.java
+/home/aishwarya/Desktop/proj/CRUD_Applications/backend/src/main/java/com/urunov/exception/ResourceNotFoundException.java
+/home/aishwarya/Desktop/proj/CRUD_Applications/backend/src/main/java/com/urunov/model/Employee.java
