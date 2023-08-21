@@ -15,8 +15,13 @@ jobs:
       run: |
         cd backend
         mvn -B package --file pom.xml
+   # - name: upload-artifact
+    #  uses: actions/upload-artifact@v3
+     # with:
+      #  name: war file
+       # path: target/
 
-
+     # run: cd 
   reactBuild:
       runs-on: self-hosted
       steps:
@@ -38,9 +43,9 @@ jobs:
 
      steps:
      - name: war file
-       run: sudo cp -r /home/aishwarya/actions-runner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
+       run: cp -r /home/aishwarya/actions-runner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
             
      - name: deploying build folder
-       run: sudo cp -r build /var/www/html
+       run:  cp -r build /var/www/html
         
         
