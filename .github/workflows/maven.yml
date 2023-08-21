@@ -45,7 +45,7 @@ jobs:
        run: |
          cd /opt/tomcat
          ls -l
-         #cp -r /home/aishwarya/githubrunner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
+         cp -r /home/aishwarya/githubrunner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
             
    #  - name: deploying build folder
      #  run:  cp -r build /var/www/html
