@@ -32,15 +32,15 @@ jobs:
             npm install
             CI='' npm run build
            
-  #deploy:
-   #   needs: build
-    #  runs-on: self-hosted
+  deploy:
+     needs: build
+     runs-on: self-hosted
 
-     # steps:
-      #- name: war file
-      #  run: sudo cp /home/aishwarya/actions-runner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
+     steps:
+     - name: war file
+       run: sudo cp -r /home/aishwarya/actions-runner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
             
-      #- name: deploying build folder
-       # run: sudo cp -r build /var/www/html
+     - name: deploying build folder
+       run: sudo cp -r build /var/www/html
         
         
