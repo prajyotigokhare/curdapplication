@@ -46,7 +46,7 @@ jobs:
         #path: path/to/your/build/output  # Change to the path where your build artifacts are
     # - name: Deploy or other actions
       # You can add additional steps here, like deploying to a server or publishing to npm
-   # - name: deploying build folder
-     #  run:  cp -r build /var/www/html
+     - name: deploying build folder
+       run:  sudo cp -r /githubrunner/_work/curd/curd/frontend/react-frontend/build /var/www/html
         
         
