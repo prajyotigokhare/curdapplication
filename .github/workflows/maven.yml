@@ -45,7 +45,7 @@ jobs:
      steps:
        - name: deploying build folder
          run:  sudo cp -r /home/fs-swapnil/actions-runner/_work/curd/curd/frontend/react-frontend/build /var/www/html
-        
+      
     # - name: Upload artifacts
      #  uses: actions/upload-artifact@v2
       # with:
