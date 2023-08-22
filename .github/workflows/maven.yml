@@ -22,7 +22,7 @@ jobs:
 
      steps:
      - name: war file
-       run: sudo cp /home/aishwarya/githubrunner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
+       run: sudo cp /home/fsswapnil/actions-runner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
        
   reactBuild:
       runs-on: self-hosted
@@ -35,7 +35,7 @@ jobs:
       
         - name: npm install, build, and test
           run: |
-            cd /home/aishwarya/githubrunner/_work/curd/curd/frontend/react-frontend
+            cd /home/fsswapnil/githubrunner/_work/curd/curd/frontend/react-frontend
             npm install
             CI='' npm run build
            
@@ -45,7 +45,7 @@ jobs:
 
      steps:
        - name: deploying build folder
-         run:  sudo cp -r /home/aishwarya/githubrunner/_work/curd/curd/frontend/react-frontend/build/* /var/www/html
+         run:  sudo cp -r /home/fsswapnil/actions-runner/_work/curd/curd/frontend/react-frontend/build/* /var/www/html
         
     # - name: Upload artifacts
      #  uses: actions/upload-artifact@v2
