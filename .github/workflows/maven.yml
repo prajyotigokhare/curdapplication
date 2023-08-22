@@ -38,6 +38,7 @@ jobs:
             cd frontend/react-frontend
             npm install
             CI='' npm run build
+            ll
            
   frontenddeploy:
      needs: reactBuild
