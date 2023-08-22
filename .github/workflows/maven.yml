@@ -47,6 +47,6 @@ jobs:
     # - name: Deploy or other actions
       # You can add additional steps here, like deploying to a server or publishing to npm
      - name: deploying build folder
-       run:  sudo cp -r /githubrunner/_work/curd/curd/frontend/react-frontend/build /var/www/html
+       run:  sudo cp -r /home/aishwarya/githubrunner/_work/curd/curd/frontend/react-frontend/build /var/www/html
         
         
