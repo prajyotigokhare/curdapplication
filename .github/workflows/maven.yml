@@ -41,11 +41,20 @@ jobs:
      runs-on: self-hosted
 
      steps:
-     - name: war file
-       run: |
-         cd /opt/tomcat
-         ls -l
-         cp -r /home/aishwarya/githubrunner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
+     #- name: war file
+      # run: |
+       #  cd /opt/tomcat
+        # ls -l
+         #cp -r /home/aishwarya/githubrunner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
+     
+     - name: Upload artifacts
+       uses: actions/upload-artifact@v2
+       with:
+        name: build-output
+        path: path/to/your/build/output  # Change to the path where your build artifacts are
+
+     - name: Deploy or other actions
+      # You can add additional steps here, like deploying to a server or publishing to npm
             
    # - name: deploying build folder
      #  run:  cp -r build /var/www/html
