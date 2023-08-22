@@ -37,8 +37,8 @@ jobs:
           run: |
             cd frontend/react-frontend
             npm install
-            # CI='' npm run build
-            npm run build
+             CI='' npm run build
+            #npm run build
   frontenddeploy:
      needs: reactBuild
      runs-on: self-hosted
