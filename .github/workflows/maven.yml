@@ -35,7 +35,7 @@ jobs:
       
         - name: npm install, build, and test
           run: |
-            cd /home/fs-swapnil/actions-runner/_work/curd/curd/frontend/react-frontend
+            cd frontend/react-frontend
             npm install
             CI='' npm run build
            
