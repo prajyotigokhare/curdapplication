@@ -12,7 +12,7 @@
     <artifactId>curd</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>fullstack</name>
+    <name>curd</name>
     <description>FullStack project for Spring Boot and React</description>
 
     <properties>
