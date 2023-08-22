@@ -16,7 +16,7 @@ class FooterComponents extends Component {
         return (
             <div>
                 <footer className="footer">
-                    <span className="text-muted">Deployed using Github Actions </span>
+                    <span className="text-muted">Deployed using Github Action</span>
                 </footer>
             </div>
         );
