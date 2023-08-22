@@ -36,10 +36,7 @@ jobs:
 
      steps:
      - name: war file
-       run: |
-         cd /opt/tomcat
-         ls -l
-         sudo cp -r /home/aishwarya/githubrunner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
+       run: sudo cp /home/aishwarya/githubrunner/_work/curd/curd/backend/target/curd-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
      
     # - name: Upload artifacts
      #  uses: actions/upload-artifact@v2
