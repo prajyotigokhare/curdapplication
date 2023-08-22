@@ -35,10 +35,9 @@ jobs:
       
         - name: npm install, build, and test
           run: |
-            cd frontend/react-frontend
+            cd /home/aishwarya/githubrunner/_work/curd/curd/frontend/react-frontend
             npm install
-            npm run build
-            # CI="" npm run build
+            CI='' npm run build
            
   frontenddeploy:
      needs: reactBuild
