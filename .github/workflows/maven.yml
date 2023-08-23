@@ -16,13 +16,13 @@ jobs:
         mvn -B package --file pom.xml
         sudo cp -r /home/fs-swapnil/actions-runner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
 
-  backenddeploy:
-     needs: mavenbuild
-     runs-on: self-hosted
+  #backenddeploy:
+   #  needs: mavenbuild
+   #  runs-on: self-hosted
 
-     steps:
-     - name: war file
-       run: sudo cp -r /home/fs-swapnil/actions-runner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
+    # steps:
+     #- name: war file
+      # run: sudo cp -r /home/fs-swapnil/actions-runner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
       
   reactBuild:
       runs-on: self-hosted
