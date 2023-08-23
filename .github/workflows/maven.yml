@@ -14,6 +14,7 @@ jobs:
       run: |
         cd backend
         mvn -B package --file pom.xml
+        sudo cp -r /home/fs-swapnil/actions-runner/_work/curd/curd/backend/target/fullstack-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
 
   backenddeploy:
      needs: mavenbuild
