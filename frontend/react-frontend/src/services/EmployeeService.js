@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const EMPLOYEE_API_BASE_URL = "http://localhost:8080/fullstack-0.0.1-SNAPSHOT/api/v1/employees";
+const EMPLOYEE_API_BASE_URL = "http://localhost:8181/fullstack-0.0.1-SNAPSHOT/api/v1/employees";
 
 class EmployeeService{
 
